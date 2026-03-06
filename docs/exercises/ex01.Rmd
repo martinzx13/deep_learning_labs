@@ -1,0 +1,31 @@
+Deep Learning is not "magic"—it is Linear Algebra and Calculus optimized for execution on silicon. To build a neural network, you must first understand the relationship
+  between input vectors, weight matrices, and the cost function surface.
+
+
+  Let $X \in \mathbb{R}^{m \times n}$ be our design matrix (features) and $y \in \mathbb{R}^m$ be our target vector. We seek a parameter vector $\theta \in \mathbb{R}^n$ such
+  that:
+  $$\hat{y} = X\theta$$
+  Our objective is to minimize the Mean Squared Error (MSE) cost function:
+  $$J(\theta) = \frac{1}{2m} \sum_{i=1}^{m} (h_{\theta}(x^{(i)}) - y^{(i)})^2 = \frac{1}{2m} (X\theta - y)^T (X\theta - y)$$
+  To find the minimum, we use Gradient Descent, updating $\theta$ iteratively:
+  $$\theta := \theta - \alpha \nabla_{\theta} J(\theta)$$
+  The gradient $\nabla_{\theta} J(\theta)$ is derived as:
+  $$\nabla_{\theta} J(\theta) = \frac{1}{m} X^T (X\theta - y)$$
+
+  ---
+
+  Assignment: The First-Principles Implementation
+
+  You are to implement a Linear Regression model from scratch using ONLY NumPy. No torch, no scikit-learn.
+
+
+  The Hard Coding Challenge:
+  In a new file deep_learning_labs/labs/lab01_foundations/src/linear_regression.py, implement the following:
+   1. A function compute_cost(X, y, theta) that returns the MSE.
+   2. A function gradient_descent(X, y, theta, alpha, iterations) that returns the optimized theta and the history of costs.
+   3. Validation: Use the following synthetic data to test your implementation:
+
+
+   1     X = 2 * np.random.rand(100, 1)
+   2     y = 4 + 3 * X + np.random.randn(100, 1)
+   3     # Hint: Don't forget to add the bias term (a column of ones) to X.
